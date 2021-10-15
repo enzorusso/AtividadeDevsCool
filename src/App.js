@@ -22,11 +22,11 @@ function App() {
 
 
   function setNovoNomeFunction({target}) {
-    setNovoNome({value: target.value});
+    setNovoNome(target.value);
   }
 
   function setNovaIdadeFunction({target}) {
-    setNovaIdade({value: target.value});
+    setNovaIdade(parseInt(target.value));
   }
 
   function addPessoa() {
