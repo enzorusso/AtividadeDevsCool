@@ -119,8 +119,60 @@ function App() {
     );
     setSelectedOption("Criança");
     setFiltroPessoas(filtroCriancas);
-    console.log(filtroCriancas)
-    console.log(pessoas)
+
+    forceUpdate();
+  }
+
+  function classificaAdolescente(pessoa) {
+    const { idade } = pessoa;
+    console.log(idade);
+    if (idade > 12 && idade <= 19) 
+      return true;
+    return false;
+  }
+  
+  function trocaAdolescente() {
+    const filtroAdolescente = pessoas.filter(pessoa => 
+      classificaAdolescente(pessoa)
+    );
+    setSelectedOption("Adolescente");
+    setFiltroPessoas(filtroAdolescente);
+
+    forceUpdate();
+  }
+
+  function classificaAdulto(pessoa) {
+    const { idade } = pessoa;
+    console.log(idade);
+    if (idade > 19 && idade <= 65) 
+      return true;
+    return false;
+  }
+  
+  function trocaAdulto() {
+    const filtroAdulto = pessoas.filter(pessoa => 
+      classificaAdulto(pessoa)
+    );
+    setSelectedOption("Adulto");
+    setFiltroPessoas(filtroAdulto);
+
+    forceUpdate();
+  }
+
+  function classificaIdoso(pessoa) {
+    const { idade } = pessoa;
+    console.log(idade);
+    if (idade > 65) 
+      return true;
+    return false;
+  }
+  
+  function trocaIdoso() {
+    const filtroIdoso = pessoas.filter(pessoa => 
+      classificaIdoso(pessoa)
+    );
+    setSelectedOption("Idoos");
+    setFiltroPessoas(filtroIdoso);
 
     forceUpdate();
   }
@@ -165,9 +217,9 @@ function App() {
         >
         <FormControlLabel style={{ marginLeft: "10px" }} value="Todos" control={<Radio />} label="Todos" checked={selectedOption === 'Todos'} onClick={trocaTodos} />
         <FormControlLabel style={{ marginLeft: "10px" }} value="crianca" control={<Radio />} label="Criança" checked={selectedOption === 'Criança'} onClick={trocaCrianca} />
-        <FormControlLabel style={{ marginLeft: "10px" }} value="adolescente" control={<Radio />} label="Adolescente" checked={selectedOption === 'Adolescente'} onClick={() => setSelectedOption('Adolescente')}/>
-        <FormControlLabel style={{ marginLeft: "10px" }} value="adulto" control={<Radio />} label="Adulto" checked={selectedOption === 'Adulto'} onClick={() => setSelectedOption('Adulto')}/>
-        <FormControlLabel style={{ marginLeft: "10px" }} value="idoso" control={<Radio />} label="Idoso" checked={selectedOption === 'Idoso'} onClick={() => setSelectedOption('Idoso')}/>
+        <FormControlLabel style={{ marginLeft: "10px" }} value="adolescente" control={<Radio />} label="Adolescente" checked={selectedOption === 'Adolescente'} onClick={trocaAdolescente}/>
+        <FormControlLabel style={{ marginLeft: "10px" }} value="adulto" control={<Radio />} label="Adulto" checked={selectedOption === 'Adulto'} onClick={trocaAdulto}/>
+        <FormControlLabel style={{ marginLeft: "10px" }} value="idoso" control={<Radio />} label="Idoso" checked={selectedOption === 'Idoso'} onClick={trocaIdoso}/>
         </RadioGroup>
       </Grid>
 
@@ -201,6 +253,10 @@ function App() {
           </h2>
         ))}
       </Grid>
+      <br/>
+      <br/>
+      <br/>
+
       {localStorage.getItem("pessoas")}
     </Grid>
   );
