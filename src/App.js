@@ -69,10 +69,13 @@ function App() {
   }
 
   function ordenarDecrescenteNome() {
-    filtroPessoas.sort((a, b) => {
-      if (a.nome > b.nome) return -1;
-      if (a.nome < b.nome) return 1;
-      return 0;
+    // filtroPessoas.sort((a, b) => {
+    //   if (a.nome > b.nome) return -1;
+    //   if (a.nome < b.nome) return 1;
+    //   return 0;
+    // });
+    filtroPessoas.sort(function(a,b) {
+      return a.nome < b.nome ? 1 : a.nome > b.nome ? -1 : 0;
     });
     forceUpdate();
   }
@@ -106,14 +109,12 @@ function App() {
 
   function classificaCrianca(pessoa) {
     const { idade } = pessoa;
-    console.log(idade);
     if (idade > 0 && idade <= 12) 
       return true;
     return false;
   }
   
   function trocaCrianca() {
-    console.log(filtroPessoas);
     const filtroCriancas = pessoas.filter(pessoa => 
       classificaCrianca(pessoa)
     );
@@ -125,7 +126,6 @@ function App() {
 
   function classificaAdolescente(pessoa) {
     const { idade } = pessoa;
-    console.log(idade);
     if (idade > 12 && idade <= 19) 
       return true;
     return false;
@@ -143,7 +143,6 @@ function App() {
 
   function classificaAdulto(pessoa) {
     const { idade } = pessoa;
-    console.log(idade);
     if (idade > 19 && idade <= 65) 
       return true;
     return false;
@@ -161,7 +160,6 @@ function App() {
 
   function classificaIdoso(pessoa) {
     const { idade } = pessoa;
-    console.log(idade);
     if (idade > 65) 
       return true;
     return false;
